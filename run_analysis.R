@@ -48,4 +48,4 @@ dt_sub <- dt_sub[, activities := factor(activities, levels = old_variables, labe
 dt_mean <- dt_sub[,lapply(.SD,mean), .(activities, subjects)]
 
 #Export the data as a txt file called "final"
-fwrite(dt_mean, "final.txt")
+write.table(dt_mean, "final.txt", row.names = FALSE)
