@@ -28,7 +28,7 @@ dt_test <- cbind(dt_subj_test, dt_test)
 #Add a column with the activities id in the train dataset
 dt_subj_train <- dt_subj_train[,c("activities"):= train_lab$labels]
 
-#Set features as test data.table columnames 
+#Set features as train data.table columnames 
 dt_train <- dt_train[,.(setnames(dt_train, features$V2))]
 dt_train <- cbind(dt_subj_train, dt_train)
 
@@ -48,4 +48,4 @@ dt_sub <- dt_sub[, activities := factor(activities, levels = old_variables, labe
 dt_mean <- dt_sub[,lapply(.SD,mean), .(activities, subjects)]
 
 #Export the data as a txt file called "final"
-fwrite(dt_mean, "final.txt")
+write.table(dt_mean, "final.txt", row.names = FALSE)
